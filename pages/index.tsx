@@ -4,15 +4,23 @@ import { useEffect, useState } from 'react'
 import Body from '../components/layouts/Body'
 import Theme from '../components/layouts/Theme'
 import Box from '../components/molecules/Box'
+import { TUserEducation } from '../utils'
 
 const Home: NextPage = () => {
   const ISSERVER = typeof window === "undefined";
   const [userName, setUserName] = useState<undefined | string>();
+  const [userEducation, setUserEducation] = useState<Array<TUserEducation>>([]);
+
   useEffect(() => {
     if (!ISSERVER) {
       const userNameFromLocalStorage = localStorage.getItem('userName');
       if (userNameFromLocalStorage) {
         setUserName(userNameFromLocalStorage);
+      }
+      const userEducationFromLocalStorage = localStorage.getItem('userEducation');
+      if(userEducationFromLocalStorage) {
+        const parsedUserEducation = JSON.parse(userEducationFromLocalStorage);
+        setUserEducation(parsedUserEducation);
       }
     }
   }, [ISSERVER]);
@@ -37,7 +45,7 @@ const Home: NextPage = () => {
         w='100%'
         position='relative'>
         <Theme />
-        <Body userName={userName} onEntername={onEntername} />
+        <Body userName={userName} userEducation={userEducation} onEntername={onEntername} setUserEducation={setUserEducation} />
       </Box>
     </div>
   )

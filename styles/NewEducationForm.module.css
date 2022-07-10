@@ -1,0 +1,7 @@
+.ReactModal__Content {
+  width: 75%;
+  height: 75%;
+  padding: 20px;
+  outline: none;
+  overflow: auto;
+}
