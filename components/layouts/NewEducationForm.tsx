@@ -3,9 +3,9 @@ import Modal from 'react-modal';
 import styled, { ThemeContext } from 'styled-components';
 import css from '@styled-system/css';
 import { searchSchools, TSchool, TUserEducation } from '../../utils';
-import Box from '../molecules/Box';
+import Box, { HoverBox } from '../molecules/Box';
 import Button from '../molecules/Button';
-import Input from '../molecules/Input';
+import Input, { StyledInput } from '../molecules/Input';
 import TextArea from '../molecules/TextArea';
 import styles from '../../styles/NewEducationForm.module.css';
 
@@ -14,21 +14,6 @@ type NewEducationFormProps = {
   onClose: () => void;
   onAddEducation: (education: TUserEducation) => void;
 };
-
-const StyledInput = styled(Input)(
-  css({
-    mt: 12,
-    mb: 26,
-    p: 12,
-    fontSize: 20,
-    border: '1px solid',
-    color: 'text',
-    borderColor: 'midgray',
-    bg: 'background',
-    borderRadius: 4,
-    width: '100%',
-  })
-)
 
 const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onAddEducation }) => {
   const theme = useContext(ThemeContext);
@@ -47,18 +32,24 @@ const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onAddEdu
     setStartYear('');
     setDescription('');
     setGrade('');
+    setSearchedSchools([]);
   }
   const onAdd = () => {
     school &&
-    onAddEducation({
-      school,
-      fieldOfStudy,
-      startYear,
-      endYear,
-      grade: Number(grade) || 0,
-      description
-    });
+      onAddEducation({
+        school,
+        fieldOfStudy,
+        startYear,
+        endYear,
+        grade: Number(grade) || 0,
+        description
+      });
     resetState();
+  }
+
+  const closeModal = () => {
+    resetState();
+    onClose();
   }
 
   return (
@@ -95,7 +86,7 @@ const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onAddEdu
               zIndex={24}
               overflow='auto'>
               {searchedSchools.map((school, index) => (
-                <Box fontSize={20} key={`${school.name}-${index}`} p={12} borderBottom='1px solid' borderColor='midgray' onClick={() => {
+                <HoverBox fontSize={20} key={`${school.name}-${index}`} p={12} onClick={() => {
                   setSchool(school);
                   if (schoolInputRef.current) {
                     schoolInputRef.current.value = school.name;
@@ -103,7 +94,7 @@ const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onAddEdu
                   setSearchedSchools([]);
                 }}>
                   {school.name}
-                </Box>
+                </HoverBox>
               ))}
             </Box>)}
         </Box>
@@ -160,7 +151,7 @@ const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onAddEdu
             variant='secondary'
             display='flex'
             justifyContent='center'
-            onClick={onClose}>
+            onClick={closeModal}>
             Cancel
           </Button>
           <Button

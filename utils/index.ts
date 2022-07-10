@@ -16,7 +16,7 @@ export type TSchool = {
   alpha_two_code: string
 }
 
-export const debouncedSearch = (fn: Function, delay: number) => {
+export const debounce = (fn: Function, delay: number) => {
   let timer: ReturnType<typeof setTimeout>;
   return (...args: Array<any>) => {
     clearTimeout(timer);
@@ -33,4 +33,17 @@ const fetchSchools = async (query: string, cb: (schools: Array<any>) => void) =>
   cb(allSchools);
 }
 
-export const searchSchools = debouncedSearch(fetchSchools, 500)
+export const searchSchools = debounce(fetchSchools, 500);
+
+export const throttle = (fn: Function, delay: number) => {
+  let flag = true;
+  return (...args: Array<any>) => {
+    if(flag){
+      fn(...args);
+      flag = false;
+      setTimeout(() => {
+        flag=true;
+      }, delay);
+    }
+  }
+};

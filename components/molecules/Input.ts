@@ -6,8 +6,10 @@ import {
   typography,
   position,
   border,
-  shadow
+  shadow,
+  variant
 } from 'styled-system';
+import css from '@styled-system/css';
 
 const Input = styled.input`
   ${space}
@@ -29,5 +31,20 @@ const Input = styled.input`
     text-transform: capitalize;
   }
 `;
+
+export const StyledInput = styled(Input)(
+  css({
+    mt: 12,
+    mb: 26,
+    p: 12,
+    fontSize: 20,
+    border: '1px solid',
+    color: 'text',
+    borderColor: 'midgray',
+    bg: 'background',
+    borderRadius: 4,
+    width: '100%',
+  })
+);
 
 export default Input;

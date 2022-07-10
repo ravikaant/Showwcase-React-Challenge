@@ -29,3 +29,11 @@ a {
   left: 0 !important;
   right: 0 !important;
 }
+
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
