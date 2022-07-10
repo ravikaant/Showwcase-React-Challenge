@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import merge from 'lodash/merge'
 import get from 'lodash/get'
 import baseTheme from '../theme';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const modes = [
   'light',
@@ -14,12 +14,38 @@ const modes = [
 function MyApp({ Component, pageProps }: AppProps) {
   const ISSERVER = typeof window === "undefined";
   const [mode, setMode] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if(!ISSERVER) {
       setMode(localStorage.getItem('colorMode') ?? modes[0]);
     }
-  }, [ISSERVER])
+  }, [ISSERVER]);
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      window.addEventListener("resize", () => {
+        if (window.innerWidth <= 655) {
+          setIsMobile(true);
+        } else {
+          setIsMobile(false);
+        }
+      });
+      if (window.innerWidth <= 655) {
+        setIsMobile(true);
+      }
+    }
+    return () => {
+      window.removeEventListener("resize", () => null);
+    };
+  }, []);
+
+  useEffect(() => {
+    const body = document.getElementsByTagName('body');
+    if(body && body.length > 0) {
+      body[0].style.overflowY = isMobile ? 'auto' : 'hidden';
+    }
+  }, [isMobile]);
 
   const getTheme = useCallback(() => merge({}, baseTheme, {
     colors: get(baseTheme.colors.modes, mode, baseTheme.colors),
@@ -33,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       localStorage.setItem('colorMode', newMode);
     }
   }
-  return <ThemeProvider theme={{ ...theme, toggleTheme: toggleColorMode }}>
+  return <ThemeProvider theme={{ ...theme, toggleTheme: toggleColorMode, isMobile }}>
     <Component {...pageProps} />
   </ThemeProvider>
 }

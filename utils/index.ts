@@ -2,9 +2,10 @@ import { fetchSchoolsByQuery } from "../api/universityAPI";
 
 export type TUserEducation = {
   school: TSchool;
+  degree: string;
   fieldOfStudy: string;
-  startYear: string;
-  endYear: string;
+  startYear: number;
+  endYear: number;
   grade: number;
   description: string;
 };
@@ -14,6 +15,59 @@ export type TSchool = {
   name: string;
   web_pages: Array<string>;
   alpha_two_code: string
+}
+
+export type typeString = string | Array<string>;
+export type typeNumber = number | Array<number>;
+export type typeStringNumber = typeString | typeNumber;
+
+
+export type BoxProps = {
+  width?: typeStringNumber;
+  height?: typeStringNumber;
+  minHeight?: typeStringNumber;
+  maxHeight?: typeStringNumber;
+  minWeight?: typeStringNumber;
+  maxWeight?: typeStringNumber;
+  fontSize?: typeStringNumber;
+  fontWeight?: typeStringNumber;
+  top?: typeStringNumber;
+  bottom?: typeStringNumber;
+  left?: typeStringNumber;
+  right?: typeStringNumber;
+  border?: typeStringNumber;
+  borderColor?: typeString;
+  borderRadius?: typeStringNumber;
+  position?: typeString;
+  display?: typeString;
+  flexDirection?: typeString;
+  flexWrap?: typeString;
+  flex?: typeStringNumber;
+  justifyContent?: typeString;
+  alignItems?: typeString;
+  bg?: typeString;
+  color?: typeString;
+  textAlign?: typeString;
+  m?: typeStringNumber;
+  mb?: typeStringNumber;
+  mt?: typeStringNumber;
+  ml?: typeStringNumber;
+  mr?: typeStringNumber;
+  mx?: typeStringNumber;
+  my?: typeStringNumber;
+  p?: typeStringNumber;
+  px?: typeStringNumber;
+  py?: typeStringNumber;
+  pt?: typeStringNumber;
+  pb?: typeStringNumber;
+  pl?: typeStringNumber;
+  pr?: typeStringNumber;
+  zIndex?: typeNumber;
+  variant?: typeString;
+  overflow?: typeString;
+  overflowX?: typeString;
+  overflowY?: typeString;
+  boxShadow?: typeStringNumber
 }
 
 export const debounce = (fn: Function, delay: number) => {
@@ -47,3 +101,5 @@ export const throttle = (fn: Function, delay: number) => {
     }
   }
 };
+
+export const startYearRange = [1980, 2022];

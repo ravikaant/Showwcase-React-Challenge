@@ -1,0 +1,7 @@
+.cardContainer .editEducation {
+  display: none;
+}
+
+.cardContainer:hover .editEducation {
+  display: block;
+}

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Body from '../components/layouts/Body'
 import Theme from '../components/layouts/Theme'
 import Box from '../components/molecules/Box'
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
         color='text'
         bg='background'
         minHeight='100vh'
-        w='100%'
+        width='100%'
         position='relative'>
         <Theme />
         <Body userName={userName} userEducation={userEducation} onEntername={onEntername} setUserEducation={setUserEducation} />

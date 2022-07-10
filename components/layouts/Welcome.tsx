@@ -30,6 +30,7 @@ const Welcome: FC<WelcomeProps> = ({ onEntername }) => {
       <Box width='100%' display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
         <Box fontSize={16}>Type your name and click &ldquo;Enter&rdquo; below to begin!</Box>
         <Input
+          width={['80%', '30%']}
           onKeyDown={(e) => {
             if (e.code === 'Enter') {
               onEnter();
@@ -39,7 +40,6 @@ const Welcome: FC<WelcomeProps> = ({ onEntername }) => {
           onChange={onChangeValue}
           className='capitalcase'
           textAlign='center'
-          width={['80%', '30%']}
           mt={20}
           p={12}
           fontSize={20}

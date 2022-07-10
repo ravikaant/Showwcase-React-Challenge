@@ -8,6 +8,14 @@ const nextConfig = {
         transform: 'lodash/{{member}}',
       },
     }
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    });
+
+    return config;
   }
 }
 

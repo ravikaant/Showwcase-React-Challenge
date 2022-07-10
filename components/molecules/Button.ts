@@ -21,7 +21,8 @@ const Button = styled(Box)(
         cursor: 'pointer',
         borderColor: 'midgray',
         ':hover': {
-          bg: 'midgray'
+          bg: 'text',
+          color: 'background'
         }
       },
       disabled: {

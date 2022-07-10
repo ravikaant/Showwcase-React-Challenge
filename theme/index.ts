@@ -22,8 +22,10 @@ const colors = {
     },
   },
 }
+const breakpoints = ['655px'];
 
 const theme = {
+  breakpoints,
   initialColorModeName: 'light',
   colors,
   fonts: {

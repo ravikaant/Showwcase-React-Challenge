@@ -10,8 +10,9 @@ import {
   variant
 } from 'styled-system';
 import css from '@styled-system/css';
+import { BoxProps } from '../../utils';
 
-const Input = styled.input`
+const Input = styled.input<BoxProps>`
   ${space}
   ${color}
   ${layout}
@@ -32,7 +33,7 @@ const Input = styled.input`
   }
 `;
 
-export const StyledInput = styled(Input)(
+export const StyledInput = styled(Input)<{ref?: any}>(
   css({
     mt: 12,
     mb: 26,

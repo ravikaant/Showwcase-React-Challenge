@@ -11,8 +11,9 @@ import {
   variant,
 } from 'styled-system';
 import css from '@styled-system/css';
+import { BoxProps } from '../../utils';
 
-const TextArea = styled.textarea(
+const TextArea = styled.textarea<BoxProps | {resize?: string | Array<string>}>(
   css({
     outline: 'none',
     '&:focus': {
@@ -20,7 +21,6 @@ const TextArea = styled.textarea(
       borderColor: 'text',
     },
   }),
-
   variant({
     prop: 'resize',
     variants: {
@@ -32,17 +32,15 @@ const TextArea = styled.textarea(
       }
     }
   }),
-
-compose(
-  space,
-  color,
-  layout,
-  typography,
-  position,
-  border,
-  shadow,
-)
-
+  compose(
+    space,
+    color,
+    layout,
+    typography,
+    position,
+    border,
+    shadow,
+  )
 );
 
 export default TextArea;
