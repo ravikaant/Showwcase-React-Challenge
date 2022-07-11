@@ -37,7 +37,6 @@ const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onSubmit
       }
     }
   }, []);
-  const [schoolValueSet, setSchoolValueSet] = useState(false);
   const resetState = () => {
     setSchool(undefined);
     setDegree('');
@@ -128,6 +127,7 @@ const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onSubmit
           <Box width='100%' position='relative'>
             <Box fontSize={16}>Name of the School</Box>
             <StyledInput
+              placeholder='National Institute of Technology, Patna'
               ref={schoolInputRef}
               onKeyUp={(e) => searchSchools(e.target.value, setSearchedSchools)} />
             {searchedSchools.length > 0 && (
@@ -158,12 +158,14 @@ const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onSubmit
           <Box width={['100%', '48%']}>
             <Box fontSize={16}>Degree</Box>
             <StyledInput
+              placeholder='B.Tech'
               value={degree}
               onChange={(e) => setDegree(e.target.value)} />
           </Box>
           <Box width={['100%', '48%']}>
             <Box fontSize={16}>Field of study</Box>
             <StyledInput
+              placeholder='Computer Science'
               value={fieldOfStudy}
               onChange={(e) => setFieldOfStudy(e.target.value)} />
           </Box>
@@ -185,6 +187,7 @@ const NewEducationForm: FC<NewEducationFormProps> = ({ isOpen, onClose, onSubmit
           <Box width='100%'>
             <Box fontSize={16}>Description</Box>
             <TextArea
+              placeholder='Completed bachelor degree with a lot of fun...'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               resize='vertical'

@@ -33,7 +33,7 @@ const Input = styled.input<BoxProps>`
   }
 `;
 
-export const StyledInput = styled(Input)<{ref?: any}>(
+export const StyledInput = styled(Input)<{ ref?: any }>(
   css({
     mt: 12,
     mb: 26,
@@ -45,6 +45,23 @@ export const StyledInput = styled(Input)<{ref?: any}>(
     bg: 'background',
     borderRadius: 4,
     width: '100%',
+    '&:focus': {
+      outline: 'none',
+      borderColor: 'text',
+    },
+    '::-webkit-input-placeholder': {
+      color: 'midgray'
+    },
+    '::placeholder': {
+      color: 'midgray',
+      opacity: 1,
+    },
+    ':-ms-input-placeholder': {
+      color: 'midgray'
+    },
+    '::-ms-input-placeholder': {
+      color: 'midgray'
+    }
   })
 );
 

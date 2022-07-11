@@ -20,6 +20,19 @@ const TextArea = styled.textarea<BoxProps | {resize?: string | Array<string>}>(
       outline: 'none',
       borderColor: 'text',
     },
+    '::-webkit-input-placeholder': {
+      color: 'midgray'
+    },
+    '::placeholder': {
+      color: 'midgray',
+      opacity: 1,
+    },
+    ':-ms-input-placeholder': {
+      color: 'midgray'
+    },
+    '::-ms-input-placeholder': {
+      color: 'midgray'
+    }
   }),
   variant({
     prop: 'resize',
