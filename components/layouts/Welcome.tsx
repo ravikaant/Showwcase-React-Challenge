@@ -1,4 +1,5 @@
-import React, { ChangeEvent, FC, useMemo, useState } from 'react';
+import React, { ChangeEvent, FC, useContext, useMemo, useState } from 'react';
+import { ThemeContext } from 'styled-components';
 import Box from '../molecules/Box';
 import Button from '../molecules/Button';
 import Input from '../molecules/Input';
@@ -9,6 +10,7 @@ type WelcomeProps = {
 
 const Welcome: FC<WelcomeProps> = ({ onEntername }) => {
   const [enteredName, setEnteredName] = useState('');
+  const theme = useContext(ThemeContext);
   const onEnter = () => {
     if (enteredName.length > 2) {
       onEntername(enteredName.charAt(0).toUpperCase() + enteredName.slice(1));
@@ -30,7 +32,7 @@ const Welcome: FC<WelcomeProps> = ({ onEntername }) => {
       <Box width='100%' display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
         <Box fontSize={16}>Type your name and click &ldquo;Enter&rdquo; below to begin!</Box>
         <Input
-          width={['80%', '30%']}
+          width={theme.isMobile ? '80%' : '30%'}
           onKeyDown={(e) => {
             if (e.code === 'Enter') {
               onEnter();
